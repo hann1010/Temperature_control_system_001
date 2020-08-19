@@ -32,7 +32,9 @@
 // set the LCD address to 0x20 for a 20 chars 4 line display
 // Set the pins on the I2C chip used for LCD connections:
 //                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
-LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address 0x20, 0x3f or something else
+// Set the LCD I2C address 0x20, 0x3f or something else,
+// depending on the I2C circuit
+LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); 
 
 void setup() {
   // put your setup code here, to run once:
