@@ -60,10 +60,28 @@ Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 /*-----( Declare Variables )-----*/
 //none
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()  /*----( SETUP: RUNS ONCE )----*/
+{
+  Serial.begin(9600);  //initialize the hardware UART for speed 9600
 
-}
+  lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
+  
+  Temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
+  Temperature_sensor_heating_tanktop.begin(MAX31865_2WIRE); 
+  Temperature_sensor_heating_inline.begin(MAX31865_2WIRE);
+  Temperature_sensor_heating_hotwater.begin(MAX31865_2WIRE);
+  Temperature_sensor_outdoor.begin(MAX31865_2WIRE);
+
+  lcd.backlight(); // set backlight on 
+ 
+//-------- Write characters on the display ----------------
+// NOTE: Cursor Position: CHAR, LINE) start at 0 
+  lcd.setCursor(0,1); //Start at character 0 on line 2
+  lcd.print("Temperature_control_system_001");
+  delay(5000);
+  lcd.clear();
+
+} /*--(end setup )---*/
 
 void loop() {
   // put your main code here, to run repeatedly:
