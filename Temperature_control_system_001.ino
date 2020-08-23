@@ -83,7 +83,26 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
 
 } /*--(end setup )---*/
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
+{
+  /*----------Print some values to terminal-----------*/
+  Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
+  
+  /*----------Print to LCD-----------*/
+  //lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("");
+  lcd.setCursor(0, 1);
+  lcd.print("");
+  lcd.setCursor(10, 1);
+  lcd.print("");
+  //lcd.setCursor(12, 2);
+  lcd.setCursor(0, 2);
+  lcd.setCursor(0, 3);
+  lcd.print("Outdoor temp = "); lcd.print(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
+  //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));
+  delay(1000);
+  
+  
 
-}
+} /* --(end main loop )-- */
