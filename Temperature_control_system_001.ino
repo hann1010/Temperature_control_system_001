@@ -98,6 +98,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   lcd.print("");
   //lcd.setCursor(12, 2);
   lcd.setCursor(0, 2);
+  lcd.print("Hot water = "); lcd.print(Temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
   lcd.setCursor(0, 3);
   lcd.print("Outdoor temp = "); lcd.print(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
   //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));
