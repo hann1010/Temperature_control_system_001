@@ -37,11 +37,11 @@
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); 
 
 // Use software SPI: CS, DI, DO, CLK
-Temperature_sensor_heating_burner = Adafruit_MAX31865(10, 11, 12, 13);
-Temperature_sensor_heating_tanktop = Adafruit_MAX31865(9, 11, 12, 13);
-Temperature_sensor_heating_inline = Adafruit_MAX31865(8, 11, 12, 13);
-Temperature_sensor_heating_hotwater = Adafruit_MAX31865(7, 11, 12, 13);
-Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
+Adafruit_MAX31865 Temperature_sensor_heating_burner = Adafruit_MAX31865(10, 11, 12, 13);
+Adafruit_MAX31865 Temperature_sensor_heating_tanktop = Adafruit_MAX31865(9, 11, 12, 13);
+Adafruit_MAX31865 Temperature_sensor_heating_inline = Adafruit_MAX31865(8, 11, 12, 13);
+Adafruit_MAX31865 Temperature_sensor_heating_hotwater = Adafruit_MAX31865(7, 11, 12, 13);
+Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 // use hardware SPI, just pass in the CS pin
 //Adafruit_MAX31865 max = Adafruit_MAX31865(10);
 
