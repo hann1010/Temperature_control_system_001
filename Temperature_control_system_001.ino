@@ -93,9 +93,9 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   lcd.setCursor(0,0);
   lcd.print("");
   lcd.setCursor(0, 1);
-  lcd.print("");
-  lcd.setCursor(10, 1);
-  lcd.print("");
+  lcd.print("Inline = "); lcd.print(Temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
+  //lcd.setCursor(10, 1);
+  //lcd.print("");
   //lcd.setCursor(12, 2);
   lcd.setCursor(0, 2);
   lcd.print("Hot water = "); lcd.print(Temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
