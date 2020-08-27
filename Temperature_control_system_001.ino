@@ -91,7 +91,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   /*----------Print to LCD-----------*/
   //lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("");
+  lcd.print("Inline = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
   lcd.setCursor(0, 1);
   lcd.print("Inline = "); lcd.print(Temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
   //lcd.setCursor(10, 1);
