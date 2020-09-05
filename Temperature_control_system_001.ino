@@ -89,7 +89,35 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
   
   /*----------Print to LCD-----------*/
-  //lcd.clear();
+  for(int i = 0; i< 10; i++)
+  {
+    if (i < 5) 
+      {
+        //lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        lcd.setCursor(0, 1);
+        lcd.print("Inline = "); lcd.print(Temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
+        //lcd.setCursor(10, 1);
+        //lcd.print("");
+        //lcd.setCursor(12, 2);
+        lcd.setCursor(0, 2);
+        lcd.print("Hot water = "); lcd.print(Temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
+        lcd.setCursor(0, 3);
+        lcd.print("Out temp = "); lcd.print(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
+        //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));   
+        delay(1000);                       
+      }
+    else
+      {
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        delay(1000);
+      }
+  }
+  
+  /*lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
   lcd.setCursor(0, 1);
@@ -102,7 +130,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   lcd.setCursor(0, 3);
   lcd.print("Out temp = "); lcd.print(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
   //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));
-  delay(1000);
+  delay(1000);*/
   
   
 
