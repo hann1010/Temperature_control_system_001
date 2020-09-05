@@ -113,6 +113,8 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.clear();
         lcd.setCursor(0,0);
         lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        lcd.setCursor(0,1);
+        lcd.print("Tank top = "); lcd.print(Temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
         delay(1000);
       }
   }
