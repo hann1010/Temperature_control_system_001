@@ -94,6 +94,10 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
     if (i < 5) 
       {
         //lcd.clear();
+        if ( i == 0)
+            {
+              lcd.clear();
+            } 
         lcd.setCursor(0,0);
         lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
         lcd.setCursor(0, 1);
@@ -110,7 +114,11 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
       }
     else
       {
-        lcd.clear();
+        if ( i == 5)
+            {
+              lcd.clear();
+            }      
+        //lcd.clear();
         lcd.setCursor(0,0);
         lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
         lcd.setCursor(0,1);
