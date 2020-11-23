@@ -142,7 +142,7 @@ void setupReceiveSMS()
   //Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
   delay(5000);          // Waiting for Sim900 booting up
   Serial1.println("AT+CPIN=\"9009\"\r"); // Set Pin code
-  Serial1.println("Recieve Setup... Done ");
+  //Serial.println("Recieve Setup... Done "); //(Arduino uno only)
 
   Serial1.println("AT+CMGF=1"); // turn to text mode
   Serial1.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
