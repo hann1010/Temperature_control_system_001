@@ -1,5 +1,6 @@
 
-/* Temperature_control_system_001 Hanna P 2020 */
+/* Temperature_control_system_001 Hanna P 2020
+For Arduino Mega 2560 board */
 /********************************************/
 
 /*-----( Import needed libraries )-----*/
@@ -132,3 +133,22 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   
 
 } /* --(end main loop )-- */
+
+void setupReceiveSMS()
+{
+  /* Seting up Sim900 for Arduino mega 2560 board
+  ------------------------------------------------*/
+  Serial1.begin(9600);   // Setting the baud rate of GSM Module  
+  //Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
+  delay(5000);          // Waiting for Sim900 booting up
+  Serial1.println("AT+CPIN=\"9009\"\r"); // Set Pin code
+  Serial1.println("Recieve Setup... Done ");
+
+  Serial1.println("AT+CMGF=1"); // turn to text mode
+  Serial1.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
+  Serial1.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
+  //Serial.println("SMS Setup... Done "); //(Arduino uno only)
+ 
+    
+  
+}
