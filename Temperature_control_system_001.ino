@@ -151,8 +151,6 @@ void setupReceiveSMS()
   Serial1.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
   Serial1.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
   //Serial.println("SMS Setup... Done "); //(Arduino uno only)
- 
-    
   
 }
 
@@ -160,7 +158,7 @@ void ReadSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
-  if (mySerial.available()>0)
+  if (Serial1.available()>0)
   {
     ReadTmp=(mySerial.read());
     inputString += ReadTmp;
