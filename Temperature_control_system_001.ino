@@ -59,7 +59,10 @@ Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 
 
 /*-----( Declare Variables )-----*/
-//none
+char ReadTmp;
+String inputString = "";
+String PhoneNro = "";
+int col = 0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -151,4 +154,40 @@ void setupReceiveSMS()
  
     
   
+}
+
+void ReadSMS()
+{
+  /* Read and prosess in coming SMS messages
+  -------------------------------------------*/
+  if (mySerial.available()>0)
+  {
+    ReadTmp=(mySerial.read());
+    inputString += ReadTmp;
+    if (ReadTmp == '\n') 
+    {
+    for (col = 0 ;col < 200; col++) 
+        { 
+   
+            if (inputString.substring(col,(col+7)) == "#Status") 
+                {
+                    //Serial.println("Send Status...   "); //(Arduino uno only)
+                    //SendMessage();
+                    
+                } 
+            if (inputString.substring(col,(col+4)) == "+358") 
+                {
+                  //Serial.println("Phone nro...   "); //(Arduino uno only)
+                  PhoneNro = "";
+                  PhoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
+                    
+                } 
+        
+        }
+        
+      //Serial.println(inputString); //(Arduino uno only)
+      // clear the string:
+      inputString = "";
+    }
+  }
 }
