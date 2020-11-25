@@ -160,7 +160,7 @@ void ReadSMS()
   -------------------------------------------*/
   if (Serial1.available()>0)
   {
-    ReadTmp=(mySerial.read());
+    ReadTmp=(Serial1.read());
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
