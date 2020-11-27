@@ -66,7 +66,8 @@ int col = 0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
-  Serial.begin(9600);  //initialize the hardware UART for speed 9600
+  //Serial.begin(9600);  //initialize the hardware UART for speed 9600
+  setupReceiveSMS();
 
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
@@ -90,8 +91,8 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
 void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
 {
   /*----------Print some values to terminal-----------*/
-  Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
-  
+  //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
+  ReadSMS();
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
