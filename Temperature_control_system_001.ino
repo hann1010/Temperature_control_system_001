@@ -67,7 +67,7 @@ int col = 0;
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
   //Serial.begin(9600);  //initialize the hardware UART for speed 9600
-  setupReceiveSMS();
+  setupReceiveSMS(); // Setting up Sim900 for Arduino mega 2560 board
 
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
@@ -92,7 +92,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
 {
   /*----------Print some values to terminal-----------*/
   //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
-  ReadSMS();
+  ReadSMS(); // Read and prosess in coming SMS messages
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
@@ -140,7 +140,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
 
 void setupReceiveSMS()
 {
-  /* Seting up Sim900 for Arduino mega 2560 board
+  /* Setting up Sim900 for Arduino mega 2560 board
   ------------------------------------------------*/
   Serial1.begin(9600);   // Setting the baud rate of GSM Module  
   //Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
