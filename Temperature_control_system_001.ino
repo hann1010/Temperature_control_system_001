@@ -61,8 +61,9 @@ Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 /*-----( Declare Variables )-----*/
 char ReadTmp;
 String inputString = "";
-String PhoneNro = "";
+String PhoneNro = "1234";
 int col = 0;
+int numOfSMS =0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -128,6 +129,10 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
         lcd.setCursor(0,1);
         lcd.print("Tank top = "); lcd.print(Temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
+        lcd.setCursor(0,2);
+        lcd.print("Phone NO = "); lcd.print(PhoneNro);
+        lcd.setCursor(0,3);
+        lcd.print("Number of SMS = "); lcd.print(numOfSMS);
         delay(1000);
       }
   }
@@ -172,6 +177,7 @@ void ReadSMS()
                 {
                     //Serial.println("Send Status...   "); //(Arduino uno only)
                     //SendMessage();
+                    numOfSMS += 1;
                     
                 } 
             if (inputString.substring(col,(col+4)) == "+358") 
@@ -189,4 +195,5 @@ void ReadSMS()
       inputString = "";
     }
   }
+  numOfSMS += 1; //only testing
 }
