@@ -68,7 +68,7 @@ int numOfSMS =0;
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
   //Serial.begin(9600);  //initialize the hardware UART for speed 9600
-  setupReceiveSMS(); // Setting up Sim900 for Arduino mega 2560 board
+  
 
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
@@ -83,10 +83,12 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
 //-------- Write characters on the display ----------------
 // NOTE: Cursor Position: CHAR, LINE) start at 0 
   lcd.setCursor(0,1); //Start at character 0 on line 2
+  lcd.print("Booting up system...");
+  setupReceiveSMS(); // Setting up Sim900 for Arduino mega 2560 board
+  lcd.setCursor(0,1); //Start at character 0 on line 2
   lcd.print("Temperature control system version.001");
   delay(5000);
   lcd.clear();
-
 } /*--(end setup )---*/
 
 void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
