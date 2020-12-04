@@ -85,6 +85,7 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
   lcd.setCursor(0,1); //Start at character 0 on line 2
   lcd.print("Booting up system...");
   setupReceiveSMS(); // Setting up Sim900 for Arduino mega 2560 board
+  lcd.clear();
   lcd.setCursor(0,1); //Start at character 0 on line 2
   lcd.print("Temperature control system version.001");
   delay(5000);
