@@ -84,6 +84,7 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
 // NOTE: Cursor Position: CHAR, LINE) start at 0 
   lcd.setCursor(0,1); //Start at character 0 on line 2
   lcd.print("Booting up system...");
+  delay(1000);
   setupReceiveSMS(); // Setting up Sim900 for Arduino mega 2560 board
   lcd.clear();
   lcd.setCursor(0,1); //Start at character 0 on line 2
