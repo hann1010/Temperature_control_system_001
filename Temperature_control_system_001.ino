@@ -201,3 +201,25 @@ void ReadSMS()
   }
   numOfSMS += 1; //only testing
 }
+
+void SendSMS()
+{
+  /* Send SMS messages
+  -------------------------------------------*/
+  //Serial.print("Send message... "); //(Arduino uno only)
+  Serial1.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
+  delay(1000);  // Delay of 1000 milli seconds or 1 second
+ // mySerial.println("AT+CMGS=\"x\"\r"); // Replace x with mobile number
+  Serial1.print("AT+CMGS="); // Set phone nro 
+  Serial1.print(char(34));  //***  ASCII code of " (char(34)
+  Serial1.print(PhoneNro);  //***
+  Serial1.println(char(34)); // End of setting phone nro with " (char(34)
+  delay(1000);
+  Serial1.println("GSM SW Box status...  ");// The SMS text you want to send
+  delay(1000);
+  
+  Serial1.println((char)26);// ASCII code of CTRL+Z
+  delay(1000);
+ 
+ 
+}
