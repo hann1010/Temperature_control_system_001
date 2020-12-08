@@ -63,7 +63,8 @@ char ReadTmp;
 String inputString = "";
 String PhoneNro = "1234";
 int col = 0;
-int numOfSMS =0;
+int numOfMsgRecieve =0;
+int numOfMsgSend =0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -136,7 +137,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(PhoneNro);
         lcd.setCursor(0,3);
-        lcd.print("Number of SMS = "); lcd.print(numOfSMS);
+        lcd.print("Number of Msg r/s = "); lcd.print(numOfMsgRecieve); lcd.print("/");  lcd.print(numOfMsgSend);
         delay(1000);
       }
   }
@@ -181,7 +182,7 @@ void ReadSMS()
                 {
                     //Serial.println("Send Status...   "); //(Arduino uno only)
                     //SendMessage();
-                    numOfSMS += 1;
+                    numOfMsgSend += 1;
                     
                 } 
             if (inputString.substring(col,(col+4)) == "+358") 
@@ -199,7 +200,7 @@ void ReadSMS()
       inputString = "";
     }
   }
-  numOfSMS += 1; //only testing
+  numOfMsgRecieve += 1; //only testing
 }
 
 void SendSMS()
