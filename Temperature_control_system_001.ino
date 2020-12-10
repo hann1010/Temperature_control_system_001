@@ -27,6 +27,8 @@ For Arduino Mega 2560 board */
 
 #include <Adafruit_MAX31865.h>
 
+#include <SoftwareSerial.h>
+
 /*-----( Declare Constants )-----*/
 
 /*-----( Declare objects )-----*/
@@ -56,7 +58,7 @@ Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 // 100.0 for PT100, 1000.0 for PT1000
 #define RNOMINAL  100.0
 
-
+SoftwareSerial mySerial(3, 2); // 3=TX 2=RX in GSM shield side
 
 /*-----( Declare Variables )-----*/
 char ReadTmp;
@@ -137,7 +139,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(PhoneNro);
         lcd.setCursor(0,3);
-        lcd.print("Number of Msg r/s = "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
+        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
         delay(1000);
       }
   }
@@ -152,15 +154,15 @@ void setupReceiveSMS()
 {
   /* Setting up Sim900 for Arduino mega 2560 board
   ------------------------------------------------*/
-  Serial1.begin(9600);   // Setting the baud rate of GSM Module  
+  mySerial.begin(9600);   // Setting the baud rate of GSM Module  
   //Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
   delay(5000);          // Waiting for Sim900 booting up
-  Serial1.println("AT+CPIN=\"9009\"\r"); // Set Pin code
+  mySerial.println("AT+CPIN=\"9009\"\r"); // Set Pin code
   //Serial.println("Recieve Setup... Done "); //(Arduino uno only)
 
-  Serial1.println("AT+CMGF=1"); // turn to text mode
-  Serial1.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
-  Serial1.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
+  mySerial.println("AT+CMGF=1"); // turn to text mode
+  mySerial.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
+  mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
   //Serial.println("SMS Setup... Done "); //(Arduino uno only)
   
 }
@@ -169,9 +171,9 @@ void ReadSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
-  if (Serial1.available()>0)
+  if (mySerial.available()>0)
   {
-    ReadTmp=(Serial1.read());
+    ReadTmp=(mySerial.read());
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
@@ -208,18 +210,18 @@ void SendSMS()
   /* Send SMS messages
   -------------------------------------------*/
   //Serial.print("Send message... "); //(Arduino uno only)
-  Serial1.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
+  mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
   delay(1000);  // Delay of 1000 milli seconds or 1 second
  // mySerial.println("AT+CMGS=\"x\"\r"); // Replace x with mobile number
-  Serial1.print("AT+CMGS="); // Set phone nro 
-  Serial1.print(char(34));  //***  ASCII code of " (char(34)
-  Serial1.print(PhoneNro);  //***
-  Serial1.println(char(34)); // End of setting phone nro with " (char(34)
+  mySerial.print("AT+CMGS="); // Set phone nro 
+  mySerial.print(char(34));  //***  ASCII code of " (char(34)
+  mySerial.print(PhoneNro);  //***
+  mySerial.println(char(34)); // End of setting phone nro with " (char(34)
   delay(1000);
-  Serial1.println("This is test message...  ");// The SMS text you want to send
+  mySerial.println("This is test message...  ");// The SMS text you want to send
   delay(1000);
   
-  Serial1.println((char)26);// ASCII code of CTRL+Z
+  mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
  
  
