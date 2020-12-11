@@ -102,6 +102,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
   ReadSMS(); // Read and prosess in coming SMS messages
   /*----------Print to LCD-----------*/
+  /*
   for(int i = 0; i< 10; i++)
   {
     if (i < 5) 
@@ -145,7 +146,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   }
   
   
-  
+*/  
   
 
 } /* --(end main loop )-- */
@@ -184,15 +185,18 @@ void ReadSMS()
                 {
                     //Serial.println("Send Status...   "); //(Arduino uno only)
                     //SendMessage();
-                    numOfMsgSend += 1;
-                    
+                  numOfMsgSend += 1;
+                  lcd.setCursor(0,1);
+                  lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
                 } 
             if (inputString.substring(col,(col+4)) == "+358") 
                 {
                   //Serial.println("Phone nro...   "); //(Arduino uno only)
                   PhoneNro = "";
+                  lcd.setCursor(0,2);
                   PhoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
-                    
+                  lcd.print("Phone NO = "); lcd.print(PhoneNro);
+                  
                 } 
         
         }
