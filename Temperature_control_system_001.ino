@@ -102,7 +102,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
   ReadSMS(); // Read and prosess in coming SMS messages
   /*----------Print to LCD-----------*/
-  /*
+  
   for(int i = 0; i< 10; i++)
   {
     if (i < 5) 
@@ -146,7 +146,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   }
   
   
-*/  
+ 
   
 
 } /* --(end main loop )-- */
@@ -172,9 +172,10 @@ void ReadSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
-  if (mySerial.available()>0)
+//  if (mySerial.available()>0)
+  if (mySerial.available()) //!!
   {
-    ReadTmp=(mySerial.read());
+/*    ReadTmp=(mySerial.read());
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
@@ -205,8 +206,35 @@ void ReadSMS()
       // clear the string:
       inputString = "";
     }
+    */
   }
-  numOfMsgRecieve += 1; //only testing
+  
+  numOfMsgSend += 1; //only testing
+}
+
+/*
+  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
+  routine is run between each time loop() runs, so using delay inside loop can
+  delay response. Multiple bytes of data may be available.
+*/
+
+
+void serialEvent() 
+{
+  while (Serial.available()) 
+  {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag so the main loop can
+    // do something about it:
+    if (inChar == '\n') 
+    {
+      //stringComplete = true;
+      PhoneNro = 'serialEvent done';
+    }
+  }
 }
 
 void SendSMS()
@@ -230,3 +258,4 @@ void SendSMS()
  
  
 }
+
