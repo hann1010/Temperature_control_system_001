@@ -172,6 +172,7 @@ void ReadSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
+/*
 //  if (mySerial.available()>0)
   if (mySerial.available()) //!!
   {
@@ -206,10 +207,11 @@ void ReadSMS()
       // clear the string:
       inputString = "";
     }
-    */
+    
   }
   
   numOfMsgSend += 1; //only testing
+*/
 }
 
 /*
