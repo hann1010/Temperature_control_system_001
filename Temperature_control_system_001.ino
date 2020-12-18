@@ -156,7 +156,7 @@ void setupReceiveSMS()
   /* Setting up Sim900 for Arduino mega 2560 board
   ------------------------------------------------*/
   mySerial.begin(9600);   // Setting the baud rate of GSM Module  
-  //Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
+  //Serial1.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
   delay(5000);          // Waiting for Sim900 booting up
   mySerial.println("AT+CPIN=\"9009\"\r"); // Set Pin code
   //Serial.println("Recieve Setup... Done "); //(Arduino uno only)
@@ -172,11 +172,12 @@ void ReadSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
-/*
-//  if (mySerial.available()>0)
-  if (mySerial.available()) //!!
+
+  if (mySerial.available()>0)
+
+//  if (mySerial.available()) //!!
   {
-/*    ReadTmp=(mySerial.read());
+    ReadTmp=(mySerial.read());
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
@@ -207,11 +208,12 @@ void ReadSMS()
       // clear the string:
       inputString = "";
     }
-    
+  
+  numOfMsgRecieve += 1; //only testing 
   }
   
-  numOfMsgSend += 1; //only testing
-*/
+  //numOfMsgRecieve += 1; //only testing
+
 }
 
 /*
@@ -220,13 +222,13 @@ void ReadSMS()
   delay response. Multiple bytes of data may be available.
 */
 
-
-void serialEvent() 
+/*
+void serial1Event() 
 {
-  while (Serial.available()) 
+  while (Serial1.available()) 
   {
     // get the new byte:
-    char inChar = (char)Serial.read();
+    char inChar = (char)Serial1.read();
     // add it to the inputString:
     inputString += inChar;
     // if the incoming character is a newline, set a flag so the main loop can
@@ -236,13 +238,17 @@ void serialEvent()
       //stringComplete = true;
       PhoneNro = 'serialEvent done';
     }
+    PhoneNro = 'serialEvent done-a';
   }
 }
+*/
 
 void SendSMS()
 {
+  
   /* Send SMS messages
   -------------------------------------------*/
+  /*
   //Serial.print("Send message... "); //(Arduino uno only)
   mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
   delay(1000);  // Delay of 1000 milli seconds or 1 second
@@ -258,6 +264,6 @@ void SendSMS()
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
  
- 
+ */
 }
 
