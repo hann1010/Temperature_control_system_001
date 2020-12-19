@@ -248,7 +248,7 @@ void SendSMS()
   
   /* Send SMS messages
   -------------------------------------------*/
-  /*
+  
   //Serial.print("Send message... "); //(Arduino uno only)
   mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
   delay(1000);  // Delay of 1000 milli seconds or 1 second
@@ -264,6 +264,6 @@ void SendSMS()
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
  
- */
+ 
 }
 
