@@ -29,6 +29,7 @@ For Arduino Mega 2560 board */
 
 #include <SoftwareSerial.h>
 
+
 /*-----( Declare Constants )-----*/
 
 /*-----( Declare objects )-----*/
@@ -58,7 +59,17 @@ Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 // 100.0 for PT100, 1000.0 for PT1000
 #define RNOMINAL  100.0
 
-SoftwareSerial mySerial(3, 2); // 3=TX 2=RX in GSM shield side
+SoftwareSerial mySerial(51, 50); // 3=TX 2=RX in GSM shield side Arduino uno only
+/*-----------------------------------------------------------------
+Note for SoftwareSerial:
+ Not all pins on the Mega and Mega 2560 support change interrupts,
+ so only the following can be used for RX:
+ 10, 11, 12, 13, 50, 51, 52, 53, 62, 63, 64, 65, 66, 67, 68, 69
+
+ Not all pins on the Leonardo and Micro support change interrupts,
+ so only the following can be used for RX:
+ 8, 9, 10, 11, 14 (MISO), 15 (SCK), 16 (MOSI).
+-------------------------------------------------------------------*/
 
 /*-----( Declare Variables )-----*/
 char ReadTmp;
