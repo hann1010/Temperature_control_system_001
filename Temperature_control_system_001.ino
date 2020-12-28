@@ -116,8 +116,8 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
-      ReadSMS(); // Read and prosess in coming SMS messages
-      if (i < 5) 
+    ReadSMS(); // Read and prosess in coming SMS messages
+    if (i < 5) 
       {
         //lcd.clear();
         if ( i == 0)
