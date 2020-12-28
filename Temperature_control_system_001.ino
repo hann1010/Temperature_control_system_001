@@ -72,7 +72,7 @@ Note for SoftwareSerial:
 -------------------------------------------------------------------*/
 
 /*-----( Declare Variables )-----*/
-char ReadTmp;
+//char ReadTmp;
 String inputString = "";
 String PhoneNro = "1234";
 int col = 0;
@@ -111,12 +111,13 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
 {
   /*----------Print some values to terminal-----------*/
   //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
-  ReadSMS(); // Read and prosess in coming SMS messages
+  //ReadSMS(); // Read and prosess in coming SMS messages
+
   /*----------Print to LCD-----------*/
-  
   for(int i = 0; i< 10; i++)
   {
-    if (i < 5) 
+      ReadSMS(); // Read and prosess in coming SMS messages
+      if (i < 5) 
       {
         //lcd.clear();
         if ( i == 0)
@@ -151,7 +152,9 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(PhoneNro);
         lcd.setCursor(0,3);
-        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
+        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(inputString);
+        //lcd.clear();
+        // lcd.print("/"); lcd.print(inputString);
         delay(1000);
       }
   }
@@ -184,11 +187,14 @@ void ReadSMS()
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
 
-  if (mySerial.available()>0)
-
-//  if (mySerial.available()) //!!
+  //if (mySerial.available()>0)
+  while (mySerial.available() > 0) 
   {
-    ReadTmp=(mySerial.read());
+//  if (mySerial.available()) //!!
+//  {
+//    ReadTmp = (char)mySerial.read();
+    char ReadTmp = mySerial.read();
+    //ReadTmp=(mySerial.read());
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
