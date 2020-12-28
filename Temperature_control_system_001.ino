@@ -75,7 +75,7 @@ Note for SoftwareSerial:
 //char ReadTmp;
 String inputString = "";
 String PhoneNro = "1234";
-int col = 0;
+//int col = 0;
 int numOfMsgRecieve =0;
 int numOfMsgSend =0;
 
@@ -198,7 +198,7 @@ void ReadSMS()
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
-    for (col = 0 ;col < 200; col++) 
+    for (int col = 0 ;col < 200; col++) 
         { 
    
             if (inputString.substring(col,(col+7)) == "#Status") 
