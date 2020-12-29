@@ -198,35 +198,35 @@ void ReadSMS()
     inputString += ReadTmp;
     if (ReadTmp == '\n') 
     {
-    for (int col = 0 ;col < 200; col++) 
-        { 
-   
-            if (inputString.substring(col,(col+7)) == "#Status") 
-                {
-                    //Serial.println("Send Status...   "); //(Arduino uno only)
-                    //SendMessage();
-                  numOfMsgSend += 1;
-                  lcd.setCursor(0,1);
-                  lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
-                } 
-            if (inputString.substring(col,(col+4)) == "+358") 
-                {
-                  //Serial.println("Phone nro...   "); //(Arduino uno only)
-                  PhoneNro = "";
-                  lcd.setCursor(0,2);
-                  PhoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
-                  lcd.print("Phone NO = "); lcd.print(PhoneNro);
-                  
-                } 
-        
-        }
-        
-      //Serial.println(inputString); //(Arduino uno only)
-      // clear the string:
+      for (int col = 0 ;col < 200; col++) 
+      { 
+  
+        if (inputString.substring(col,(col+7)) == "#Status") 
+        {
+          //Serial.println("Send Status...   "); //(Arduino uno only)
+          //SendMessage();
+          numOfMsgSend += 1;
+          lcd.setCursor(0,1);
+          lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
+        } 
+        if (inputString.substring(col,(col+4)) == "+358") 
+        {
+          //Serial.println("Phone nro...   "); //(Arduino uno only)
+          PhoneNro = "";
+          lcd.setCursor(0,2);
+          PhoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
+          lcd.print("Phone NO = "); lcd.print(PhoneNro);
+                    
+        } 
+          
+      }
+          
+        //Serial.println(inputString); //(Arduino uno only)
+        // clear the string:
       inputString = "";
     }
   
-  numOfMsgRecieve += 1; //only testing 
+    numOfMsgRecieve += 1; //only testing 
   }
   
   //numOfMsgRecieve += 1; //only testing
