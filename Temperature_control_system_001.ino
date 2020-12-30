@@ -41,11 +41,11 @@ For Arduino Mega 2560 board */
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); 
 
 // Use software SPI: CS, DI, DO, CLK
-Adafruit_MAX31865 Temperature_sensor_heating_burner = Adafruit_MAX31865(10, 11, 12, 13);
-Adafruit_MAX31865 Temperature_sensor_heating_tanktop = Adafruit_MAX31865(9, 11, 12, 13);
-Adafruit_MAX31865 Temperature_sensor_heating_inline = Adafruit_MAX31865(8, 11, 12, 13);
-Adafruit_MAX31865 Temperature_sensor_heating_hotwater = Adafruit_MAX31865(7, 11, 12, 13);
-Adafruit_MAX31865 Temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
+Adafruit_MAX31865 temperature_sensor_heating_burner = Adafruit_MAX31865(10, 11, 12, 13);
+Adafruit_MAX31865 temperature_sensor_heating_tanktop = Adafruit_MAX31865(9, 11, 12, 13);
+Adafruit_MAX31865 temperature_sensor_heating_inline = Adafruit_MAX31865(8, 11, 12, 13);
+Adafruit_MAX31865 temperature_sensor_heating_hotwater = Adafruit_MAX31865(7, 11, 12, 13);
+Adafruit_MAX31865 temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 // use hardware SPI, just pass in the CS pin
 //Adafruit_MAX31865 max = Adafruit_MAX31865(10);
 
@@ -72,12 +72,12 @@ Note for SoftwareSerial:
 -------------------------------------------------------------------*/
 
 /*-----( Declare Variables )-----*/
-//char ReadTmp;
+
 String inputString = "";
-String PhoneNro = "1234";
-//int col = 0;
-int numOfMsgRecieve =0;
-int numOfMsgSend =0;
+String phoneNro = "1234";
+
+int numOfMsgRecieve = 0;
+int numOfMsgSend =0 ;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -86,11 +86,11 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
 
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
-  Temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
-  Temperature_sensor_heating_tanktop.begin(MAX31865_2WIRE); 
-  Temperature_sensor_heating_inline.begin(MAX31865_2WIRE);
-  Temperature_sensor_heating_hotwater.begin(MAX31865_2WIRE);
-  Temperature_sensor_outdoor.begin(MAX31865_2WIRE);
+  temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
+  temperature_sensor_heating_tanktop.begin(MAX31865_2WIRE); 
+  temperature_sensor_heating_inline.begin(MAX31865_2WIRE);
+  temperature_sensor_heating_hotwater.begin(MAX31865_2WIRE);
+  temperature_sensor_outdoor.begin(MAX31865_2WIRE);
 
   lcd.backlight(); // set backlight on 
  
@@ -116,7 +116,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
-    ReadSMS(); // Read and prosess in coming SMS messages
+    readSMS(); // Read and prosess in coming SMS messages
     if (i < 5) 
       {
         //lcd.clear();
@@ -125,16 +125,16 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
               lcd.clear();
             } 
         lcd.setCursor(0,0);
-        lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        lcd.print("Burner = "); lcd.print(temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
         lcd.setCursor(0, 1);
-        lcd.print("Inline = "); lcd.print(Temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
+        lcd.print("Inline = "); lcd.print(temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
         //lcd.setCursor(10, 1);
         //lcd.print("");
         //lcd.setCursor(12, 2);
         lcd.setCursor(0, 2);
-        lcd.print("Hot water = "); lcd.print(Temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
+        lcd.print("Hot water = "); lcd.print(temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
         lcd.setCursor(0, 3);
-        lcd.print("Out temp = "); lcd.print(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
+        lcd.print("Out temp = "); lcd.print(temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
         //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));   
         delay(1000);                       
       }
@@ -146,11 +146,11 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
             }      
         //lcd.clear();
         lcd.setCursor(0,0);
-        lcd.print("Burner = "); lcd.print(Temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        lcd.print("Burner = "); lcd.print(temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
         lcd.setCursor(0,1);
-        lcd.print("Tank top = "); lcd.print(Temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
+        lcd.print("Tank top = "); lcd.print(temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
         lcd.setCursor(0,2);
-        lcd.print("Phone NO = "); lcd.print(PhoneNro);
+        lcd.print("Phone NO = "); lcd.print(phoneNro);
         lcd.setCursor(0,3);
         lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(inputString);
         //lcd.clear();
@@ -182,7 +182,7 @@ void setupReceiveSMS()
   
 }
 
-void ReadSMS()
+void readSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
@@ -193,10 +193,10 @@ void ReadSMS()
 //  if (mySerial.available()) //!!
 //  {
 //    ReadTmp = (char)mySerial.read();
-    char ReadTmp = mySerial.read();
+    char readTmp = mySerial.read();
     //ReadTmp=(mySerial.read());
-    inputString += ReadTmp;
-    if (ReadTmp == '\n') 
+    inputString += readTmp;
+    if (readTmp == '\n') 
     {
       for (int col = 0 ;col < 200; col++) 
       { 
@@ -209,20 +209,21 @@ void ReadSMS()
           lcd.setCursor(0,1);
           lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
         } 
+
         if (inputString.substring(col,(col+4)) == "+358") 
         {
           //Serial.println("Phone nro...   "); //(Arduino uno only)
-          PhoneNro = "";
+          phoneNro = "";
           lcd.setCursor(0,2);
-          PhoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
-          lcd.print("Phone NO = "); lcd.print(PhoneNro);
+          phoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
+          lcd.print("Phone NO = "); lcd.print(phoneNro);
                     
         } 
           
       }
           
         //Serial.println(inputString); //(Arduino uno only)
-        // clear the string:
+      // clear the string:
       inputString = "";
     }
   
@@ -260,7 +261,14 @@ void serial1Event()
 }
 */
 
-void SendSMS()
+void temperatureRead()
+{
+  /* Reading temperature from sensors
+  -------------------------------------------*/
+
+}
+
+void sendSMS()
 {
   
   /* Send SMS messages
@@ -272,7 +280,7 @@ void SendSMS()
  // mySerial.println("AT+CMGS=\"x\"\r"); // Replace x with mobile number
   mySerial.print("AT+CMGS="); // Set phone nro 
   mySerial.print(char(34));  //***  ASCII code of " (char(34)
-  mySerial.print(PhoneNro);  //***
+  mySerial.print(phoneNro);  //***
   mySerial.println(char(34)); // End of setting phone nro with " (char(34)
   delay(1000);
   mySerial.println("This is test message...  ");// The SMS text you want to send
