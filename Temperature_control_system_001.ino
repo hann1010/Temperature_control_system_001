@@ -5,11 +5,11 @@ For Arduino Mega 2560 board */
 
 /*-----( Import needed libraries )-----*/
 #include <Wire.h>  // Comes with Arduino IDE
+
 // Get the LCD I2C Library here:
 // https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads
 // Move any other LCD libraries to another folder or delete them
 // See Library "Docs" folder for possible commands etc.
-
 #include <LiquidCrystal_I2C.h>
 
 /*************************************************** 
@@ -24,10 +24,10 @@ For Arduino Mega 2560 board */
   Written by Limor Fried/Ladyada for Adafruit Industries.  
   BSD license, all text above must be included in any redistribution
  ****************************************************/
-
 #include <Adafruit_MAX31865.h>
 
-#include <SoftwareSerial.h>
+
+#include <SoftwareSerial.h> // Comes with Arduino IDE
 
 
 /*-----( Declare Constants )-----*/
@@ -59,7 +59,7 @@ Adafruit_MAX31865 temperature_sensor_outdoor = Adafruit_MAX31865(6, 11, 12, 13);
 // 100.0 for PT100, 1000.0 for PT1000
 #define RNOMINAL  100.0
 
-SoftwareSerial mySerial(51, 50); // 3=TX 2=RX in GSM shield side Arduino uno only
+
 /*-----------------------------------------------------------------
 Note for SoftwareSerial:
  Not all pins on the Mega and Mega 2560 support change interrupts,
@@ -70,6 +70,8 @@ Note for SoftwareSerial:
  so only the following can be used for RX:
  8, 9, 10, 11, 14 (MISO), 15 (SCK), 16 (MOSI).
 -------------------------------------------------------------------*/
+SoftwareSerial mySerial(51, 50); // 3=TX 2=RX in GSM shield side Arduino uno only
+
 
 /*-----( Declare Variables )-----*/
 
