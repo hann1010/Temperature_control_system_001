@@ -31,6 +31,8 @@ For Arduino Mega 2560 board */
 
 
 /*-----( Declare Constants )-----*/
+const int powerOn = 2;   // Pin for set Sim900 power on
+
 
 /*-----( Declare objects )-----*/
 // set the LCD address to 0x20 for a 20 chars 4 line display
@@ -83,12 +85,12 @@ int numOfMsgSend =0 ;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
-  //Serial.begin(9600);  //initialize the hardware UART for speed 9600
+  //Serial.begin(9600);  // initialize the hardware UART for speed 9600
   
-
+  digitalWrite(powerOn, LOW); // Set power sw pin to Low
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
-  temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
+  temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // Set to 2WIRE or 4WIRE as necessary
   temperature_sensor_heating_tanktop.begin(MAX31865_2WIRE); 
   temperature_sensor_heating_inline.begin(MAX31865_2WIRE);
   temperature_sensor_heating_hotwater.begin(MAX31865_2WIRE);
