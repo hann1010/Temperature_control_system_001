@@ -81,7 +81,7 @@ String inputString = "";
 String phoneNro = "1234";
 
 int numOfMsgRecieve = 0;
-int numOfMsgSend =0 ;
+int numOfMsgSend = 0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -156,7 +156,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(phoneNro);
         lcd.setCursor(0,3);
-        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(inputString);
+        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
         //lcd.clear();
         // lcd.print("/"); lcd.print(inputString);
         delay(1000);
@@ -200,6 +200,7 @@ void readSMS()
     char readTmp = mySerial.read();
     //ReadTmp=(mySerial.read());
     inputString += readTmp;
+    /*
     if (readTmp == '\n') 
     {
       for (int col = 0 ;col < 200; col++) 
@@ -209,7 +210,7 @@ void readSMS()
         {
           //Serial.println("Send Status...   "); //(Arduino uno only)
           //SendMessage();
-          numOfMsgSend += 1;
+          //numOfMsgSend += 1;
           lcd.setCursor(0,1);
           lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
         } 
@@ -230,12 +231,35 @@ void readSMS()
       // clear the string:
       inputString = "";
     }
-  
-    numOfMsgRecieve += 1; //only testing 
+    */
+  numOfMsgRecieve += 1; //only testing 
   }
+  for (int col = 0 ;col < 200; col++) 
+      { 
   
-  //numOfMsgRecieve += 1; //only testing
+        if (inputString.substring(col,(col+7)) == "#Status") 
+        {
+          //Serial.println("Send Status...   "); //(Arduino uno only)
+          //SendMessage();
+          //numOfMsgSend += 1;
+          lcd.setCursor(0,1);
+          lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
+        } 
 
+        if (inputString.substring(col,(col+4)) == "+358") 
+        {
+          //Serial.println("Phone nro...   "); //(Arduino uno only)
+          phoneNro = "";
+          lcd.setCursor(0,2);
+          phoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
+          lcd.print("Phone NO = "); lcd.print(phoneNro);
+                    
+        } 
+          
+      }
+  inputString = "";
+  //numOfMsgRecieve += 1; //only testing
+  }
 }
 
 /*
