@@ -85,7 +85,7 @@ int numOfMsgSend = 0;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
-  //Serial.begin(9600);  // initialize the hardware UART for speed 9600
+  Serial.begin(9600);  // initialize the hardware UART for speed 9600
   
   digitalWrite(powerOn, LOW); // Set power sw pin to Low
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
@@ -155,10 +155,10 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.print("Tank top = "); lcd.print(temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(phoneNro);
-        lcd.setCursor(0,3);
+        lcd.setCursor(0,3); 
         lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
-        //lcd.clear();
-        // lcd.print("/"); lcd.print(inputString);
+        //lcd.clear(); 
+//        lcd.print("str "); lcd.print(inputString.substring(90,130));
         delay(1000);
       }
   }
@@ -177,12 +177,13 @@ void setupReceiveSMS()
   //Serial1.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
   delay(5000);          // Waiting for Sim900 booting up
   mySerial.println("AT+CPIN=\"9009\"\r"); // Set Pin code
-  //Serial.println("Recieve Setup... Done "); //(Arduino uno only)
+  Serial.println("Recieve Setup... Done "); //(Arduino uno only)
 
-  mySerial.println("AT+CMGF=1"); // turn to text mode
-  mySerial.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
-  mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
-  //Serial.println("SMS Setup... Done "); //(Arduino uno only)
+  mySerial.println("AT+CMGF=1\r"); // turn to text mode
+  mySerial.println("AT+CMGR=ALL\r"); // read all SMS from the inbox
+//  mySerial.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
+//  mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
+  Serial.println("SMS Setup... Done "); //(Arduino uno only)
   
 }
 
@@ -190,7 +191,7 @@ void readSMS()
 {
   /* Read and prosess in coming SMS messages
   -------------------------------------------*/
-
+  //mySerial.println("AT+CMGR=ALL\r"); // Read All SMS
   //if (mySerial.available()>0)
   while (mySerial.available() > 0) 
   {
@@ -200,6 +201,7 @@ void readSMS()
     char readTmp = mySerial.read();
     //ReadTmp=(mySerial.read());
     inputString += readTmp;
+    
     /*
     if (readTmp == '\n') 
     {
@@ -234,7 +236,7 @@ void readSMS()
     */
   numOfMsgRecieve += 1; //only testing 
   }
-  for (int col = 0 ;col < 200; col++) 
+   for (int col = 0 ;col < 2000; col++) 
       { 
   
         if (inputString.substring(col,(col+7)) == "#Status") 
@@ -257,9 +259,10 @@ void readSMS()
         } 
           
       }
-  inputString = "";
+  //inputString = "";
   //numOfMsgRecieve += 1; //only testing
-  }
+  Serial.println(inputString);
+  
 }
 
 /*
@@ -319,4 +322,3 @@ void sendSMS()
  
  
 }
-
