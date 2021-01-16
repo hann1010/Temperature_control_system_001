@@ -83,6 +83,8 @@ String phoneNro = "1234";
 int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
 
+boolean sendRequest = false;
+
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
   Serial.begin(9600);  // initialize the hardware UART for speed 9600
@@ -181,8 +183,8 @@ void setupReceiveSMS()
 
   mySerial.println("AT+CMGF=1\r"); // turn to text mode
   mySerial.println("AT+CMGR=ALL\r"); // read all SMS from the inbox
-//  mySerial.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
-//  mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to receive a live SMS
+  mySerial.println("AT+CMGD=1,1"); // Delete all read SMS from Sim card
+  mySerial.println("AT+CMGL=ALL\r"); // AT Command to receive a live SMS
   Serial.println("SMS Setup... Done "); //(Arduino uno only)
   
 }
@@ -201,7 +203,7 @@ void readSMS()
     char readTmp = mySerial.read();
     //ReadTmp=(mySerial.read());
     inputString += readTmp;
-    
+    sendRequest = true;
     /*
     if (readTmp == '\n') 
     {
@@ -236,6 +238,7 @@ void readSMS()
     */
   numOfMsgRecieve += 1; //only testing 
   }
+/*
    for (int col = 0 ;col < 2000; col++) 
       { 
   
@@ -259,6 +262,7 @@ void readSMS()
         } 
           
       }
+*/
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
   Serial.println(inputString);
