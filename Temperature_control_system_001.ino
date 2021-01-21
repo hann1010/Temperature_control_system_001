@@ -266,7 +266,7 @@ void readSMS()
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
   Serial.println(inputString);
-  
+  sendSMS();
 }
 
 /*
@@ -305,9 +305,13 @@ void temperatureRead()
 
 void sendSMS()
 {
-  
+  if ( sendRequest == true )
+    {
+      Serial.print("Send test... ");
+      sendRequest = false;
+    }
   /* Send SMS messages
-  -------------------------------------------*/
+  -------------------------------------------
   
   //Serial.print("Send message... "); //(Arduino uno only)
   mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
@@ -323,6 +327,6 @@ void sendSMS()
   
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
- 
+ */
  
 }
