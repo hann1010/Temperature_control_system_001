@@ -265,7 +265,7 @@ void readSMS()
 */
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
-  Serial.println(inputString);
+//  Serial.println(inputString);
   sendSMS();
 }
 
@@ -307,7 +307,7 @@ void sendSMS()
 {
   if ( sendRequest == true )
     {
-      Serial.print("Send test... ");
+      Serial.println("Send test... ");
       sendRequest = false;
     }
   /* Send SMS messages
