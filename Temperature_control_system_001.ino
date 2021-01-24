@@ -266,7 +266,12 @@ void readSMS()
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
 //  Serial.println(inputString);
-  sendSMS();
+ 
+  if ( sendRequest == true )
+    {
+      sendSMS();
+      sendRequest = false;
+    }
 }
 
 /*
@@ -305,11 +310,8 @@ void temperatureRead()
 
 void sendSMS()
 {
-  if ( sendRequest == true )
-    {
-      Serial.println("Send test... ");
-      sendRequest = false;
-    }
+
+  Serial.println("Send test... ");
   /* Send SMS messages
   -------------------------------------------
   
