@@ -79,6 +79,7 @@ SoftwareSerial mySerial(51, 50); // 3=TX 2=RX in GSM shield side Arduino uno onl
 
 String inputString = "";
 String phoneNro = "";
+String sendTitle = "";
 
 int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
@@ -270,6 +271,7 @@ void readSMS()
   if ( sendRequest == true )
     {
       phoneNro = "12345";
+      sendTitle = "test";
       sendSMS();
       sendRequest = false;
     }
@@ -313,8 +315,10 @@ void sendSMS()
 {
 
   Serial.println("Send test... ");
-  Serial.print("phoneNro = ");
+  Serial.print("PhoneNro = ");
   Serial.println(phoneNro);
+  Serial.print("SendTitle = ");
+  Serial.println(sendTitle);
   /* Send SMS messages
   -------------------------------------------
   
