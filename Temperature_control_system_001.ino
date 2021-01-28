@@ -85,6 +85,7 @@ int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
 
 boolean sendRequest = false;
+boolean sendDone = true;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
@@ -205,65 +206,10 @@ void readSMS()
     //ReadTmp=(mySerial.read());
     inputString += readTmp;
     sendRequest = true;
-    /*
-    if (readTmp == '\n') 
-    {
-      for (int col = 0 ;col < 200; col++) 
-      { 
-  
-        if (inputString.substring(col,(col+7)) == "#Status") 
-        {
-          //Serial.println("Send Status...   "); //(Arduino uno only)
-          //SendMessage();
-          //numOfMsgSend += 1;
-          lcd.setCursor(0,1);
-          lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
-        } 
 
-        if (inputString.substring(col,(col+4)) == "+358") 
-        {
-          //Serial.println("Phone nro...   "); //(Arduino uno only)
-          phoneNro = "";
-          lcd.setCursor(0,2);
-          phoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
-          lcd.print("Phone NO = "); lcd.print(phoneNro);
-                    
-        } 
-          
-      }
-          
-        //Serial.println(inputString); //(Arduino uno only)
-      // clear the string:
-      inputString = "";
-    }
-    */
   numOfMsgRecieve += 1; //only testing 
   }
-/*
-   for (int col = 0 ;col < 2000; col++) 
-      { 
-  
-        if (inputString.substring(col,(col+7)) == "#Status") 
-        {
-          //Serial.println("Send Status...   "); //(Arduino uno only)
-          //SendMessage();
-          //numOfMsgSend += 1;
-          lcd.setCursor(0,1);
-          lcd.print("Num of Msg s "); lcd.print(numOfMsgSend);
-        } 
 
-        if (inputString.substring(col,(col+4)) == "+358") 
-        {
-          //Serial.println("Phone nro...   "); //(Arduino uno only)
-          phoneNro = "";
-          lcd.setCursor(0,2);
-          phoneNro = inputString.substring(col,(col+13)); // Read Phone Nro from the string
-          lcd.print("Phone NO = "); lcd.print(phoneNro);
-                    
-        } 
-          
-      }
-*/
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
 //  Serial.println(inputString);
@@ -273,7 +219,7 @@ void readSMS()
       phoneNro = "12345";
       sendTitle = "test";
       sendSMS();
-      sendRequest = false;
+      sendRequest = false;        
     }
 }
 
