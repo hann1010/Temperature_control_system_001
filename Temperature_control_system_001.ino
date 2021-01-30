@@ -207,20 +207,35 @@ void readSMS()
     inputString += readTmp;
     sendRequest = true;
 
-  numOfMsgRecieve += 1; //only testing 
+    numOfMsgRecieve += 1; //only testing 
   }
 
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
 //  Serial.println(inputString);
  
-  if ( sendRequest == true )
+if ( sendRequest == true )
+  {
+    if ( sendDone == false )
     {
       phoneNro = "12345";
-      sendTitle = "test";
+      endTitle = "test";
       sendSMS();
-      sendRequest = false;        
+      sendRequest = false;  
     }
+    else 
+    {
+      Serial.println("No send ... ");
+    }
+    if (sendDone == false)
+    {
+      sendDone = true;
+    } 
+    else
+    {
+      sendDone = false;
+    }    
+  }
 }
 
 /*
