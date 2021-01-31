@@ -32,6 +32,7 @@ For Arduino Mega 2560 board */
 
 /*-----( Declare Constants )-----*/
 const int powerOn = 2;   // Pin for set Sim900 power on
+const int testButton = 3;   // Pin for set test botton
 
 
 /*-----( Declare objects )-----*/
@@ -194,7 +195,7 @@ void setupReceiveSMS()
 void readSMS()
 {
   /* Read and prosess in coming SMS messages
-  -------------------------------------------*/
+  -------------------------------------------
   //mySerial.println("AT+CMGR=ALL\r"); // Read All SMS
   //if (mySerial.available()>0)
   while (mySerial.available() > 0) 
@@ -219,7 +220,7 @@ if ( sendRequest == true )
     if ( sendDone == false )
     {
       phoneNro = "12345";
-      endTitle = "test";
+      sendTitle = "test";
       sendSMS();
       sendRequest = false;  
     }
@@ -237,7 +238,7 @@ if ( sendRequest == true )
     }    
   }
 }
-
+*/
 /*
   SerialEvent occurs whenever a new data comes in the hardware serial RX. This
   routine is run between each time loop() runs, so using delay inside loop can
@@ -268,6 +269,13 @@ void serial1Event()
 void temperatureRead()
 {
   /* Reading temperature from sensors
+  -------------------------------------------*/
+
+}
+
+void sendSMStest()
+{
+    /* Sending SMS test message.
   -------------------------------------------*/
 
 }
