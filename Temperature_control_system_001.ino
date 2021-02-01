@@ -32,7 +32,7 @@ For Arduino Mega 2560 board */
 
 /*-----( Declare Constants )-----*/
 const int powerOn = 2;   // Pin for set Sim900 power on
-const int testButton = 3;   // Pin for set test botton
+const int testButton = 3;   // Pin for send test botton
 
 
 /*-----( Declare objects )-----*/
