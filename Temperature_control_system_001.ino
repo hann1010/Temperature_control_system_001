@@ -93,6 +93,7 @@ void setup()  /*----( SETUP: RUNS ONCE )----*/
   Serial.begin(9600);  // initialize the hardware UART for speed 9600
   
   digitalWrite(powerOn, LOW); // Set power sw pin to Low
+  pinMode(testButton, INPUT_PULLUP); // initialize the digital pins to input and pullup modes
   lcd.begin(20,4);         // initialize the lcd for 20 chars 4 lines
   
   temperature_sensor_heating_burner.begin(MAX31865_2WIRE);  // Set to 2WIRE or 4WIRE as necessary
@@ -125,7 +126,8 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
-    readSMS(); // Read and prosess in coming SMS messages
+    //readSMS(); // Read and prosess in coming SMS messages
+    sendSMStest(); // Reading test button
     if (i < 5) 
       {
         //lcd.clear();
@@ -277,6 +279,13 @@ void sendSMStest()
 {
     /* Sending SMS test message.
   -------------------------------------------*/
+  if (testButton == LOW)
+  {
+    Serial.println("Sending test... ");
+    sendSMS();
+    phoneNro = "12345";
+    sendTitle = "test";
+  }
 
 }
 
