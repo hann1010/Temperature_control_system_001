@@ -282,9 +282,9 @@ void sendSMStest()
   if (testButton == LOW)
   {
     Serial.println("Sending test... ");
-    sendSMS();
     phoneNro = "12345";
     sendTitle = "test";
+    sendSMS();
   }
 
 }
