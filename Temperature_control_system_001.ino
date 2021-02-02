@@ -309,6 +309,8 @@ void sendSMS()
   mySerial.print(phoneNro);  //***
   mySerial.println(char(34)); // End of setting phone nro with " (char(34)
   delay(1000);
+  mySerial.print("SendTitle = ");
+  mySerial.println(sendTitle);
   mySerial.println("This is test message...  ");// The SMS text you want to send
   delay(1000);
   
