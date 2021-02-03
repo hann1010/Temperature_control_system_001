@@ -127,7 +127,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   for(int i = 0; i< 10; i++)
   {
     //readSMS(); // Read and prosess in coming SMS messages
-    sendSMStest(); // Reading test button
+    SendTestSMS(); // Reading test button
     if (i < 5) 
       {
         //lcd.clear();
@@ -239,8 +239,9 @@ if ( sendRequest == true )
       sendDone = false;
     }    
   }
+  */
 }
-*/
+
 /*
   SerialEvent occurs whenever a new data comes in the hardware serial RX. This
   routine is run between each time loop() runs, so using delay inside loop can
@@ -275,13 +276,17 @@ void temperatureRead()
 
 }
 
-void sendSMStest()
+void SendTestSMS()
 {
     /* Sending SMS test message.
   -------------------------------------------*/
-  if (testButton == LOW)
+  int buttonState = digitalRead(testButton);
+  if (buttonState == LOW)
   {
     Serial.println("Sending test... ");
+    lcd.clear();
+    lcd.setCursor(0, 1);
+    lcd.print("Sending test...");
     phoneNro = "12345";
     sendTitle = "test";
     sendSMS();
@@ -313,9 +318,12 @@ void sendSMS()
   mySerial.println(sendTitle);
   mySerial.println("This is test message...  ");// The SMS text you want to send
   delay(1000);
-  
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
- 
+  Serial.println("The message has been sent");
+//  lcd.clear();
+  lcd.setCursor(0, 2);
+  lcd.print("The message has been sent");
+  delay(2000);
  
 }
