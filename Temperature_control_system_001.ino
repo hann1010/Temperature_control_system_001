@@ -85,6 +85,8 @@ String sendTitle = "";
 int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
 
+float burner;
+
 boolean sendRequest = false;
 boolean sendDone = true;
 
@@ -273,7 +275,7 @@ void temperatureRead()
 {
   /* Reading temperature from sensors
   -------------------------------------------*/
-
+  burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
 }
 
 void SendTestSMS()
