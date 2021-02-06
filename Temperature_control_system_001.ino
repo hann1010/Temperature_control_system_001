@@ -130,6 +130,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   {
     //readSMS(); // Read and prosess in coming SMS messages
     SendTestSMS(); // Reading test button
+    temperatureRead(); // Reading temperature from sensor)
     if (i < 5) 
       {
         //lcd.clear();
@@ -276,6 +277,8 @@ void temperatureRead()
   /* Reading temperature from sensors
   -------------------------------------------*/
   burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
+  Serial.print("Burner = "); //Debug
+  Serial.println(burner);
 }
 
 void SendTestSMS()
@@ -304,6 +307,8 @@ void sendSMS()
   Serial.println(phoneNro);
   Serial.print("SendTitle = ");
   Serial.println(sendTitle);
+  Serial.print("Burner = ");
+  Serial.println(burner);
   /* Send SMS messages
   ------------------------------------------- */
   
