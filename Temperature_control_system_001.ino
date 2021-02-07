@@ -85,7 +85,11 @@ String sendTitle = "";
 int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
 
-float burner;
+float heating_burner;
+float heating_tanktop;
+float heating_inline;
+float heating_hotwater;
+float outdoor;
 
 boolean sendRequest = false;
 boolean sendDone = true;
@@ -139,7 +143,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
               lcd.clear();
             } 
         lcd.setCursor(0,0);
-        lcd.print("Burner = "); lcd.print(burner);
+        lcd.print("Burner = "); lcd.print(heating_burner);
         lcd.setCursor(0, 1);
         lcd.print("Inline = "); lcd.print(temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline));
         //lcd.setCursor(10, 1);
@@ -160,7 +164,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
             }      
         //lcd.clear();
         lcd.setCursor(0,0);
-        lcd.print("Burner = "); lcd.print(temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner));
+        lcd.print("Burner = "); lcd.print(heating_burner);
         lcd.setCursor(0,1);
         lcd.print("Tank top = "); lcd.print(temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
         lcd.setCursor(0,2);
@@ -276,9 +280,9 @@ void temperatureRead()
 {
   /* Reading temperature from sensors
   -------------------------------------------*/
-  burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
+  heating_burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
   Serial.print("Burner = "); //Debug
-  Serial.println(burner);
+  Serial.println(heating_burner);
 }
 
 void SendTestSMS()
@@ -308,7 +312,7 @@ void sendSMS()
   Serial.print("SendTitle = ");
   Serial.println(sendTitle);
   Serial.print("Burner = ");
-  Serial.println(burner);
+  Serial.println(heating_burner);
   /* Send SMS messages
   ------------------------------------------- */
   
