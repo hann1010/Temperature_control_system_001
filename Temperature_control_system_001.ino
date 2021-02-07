@@ -305,7 +305,7 @@ void SendTestSMS()
 
 void sendSMS()
 {
-
+  // Debug
   Serial.println("Send test... ");
   Serial.print("PhoneNro = ");
   Serial.println(phoneNro);
