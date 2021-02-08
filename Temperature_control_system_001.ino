@@ -166,7 +166,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,0);
         lcd.print("Burner = "); lcd.print(heating_burner);
         lcd.setCursor(0,1);
-        lcd.print("Tank top = "); lcd.print(temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop));
+        lcd.print("Tank top = "); lcd.print(heating_tanktop);
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(phoneNro);
         lcd.setCursor(0,3); 
@@ -281,8 +281,11 @@ void temperatureRead()
   /* Reading temperature from sensors
   -------------------------------------------*/
   heating_burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
+  heating_tanktop = temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop);
   Serial.print("Burner = "); //Debug
   Serial.println(heating_burner);
+  Serial.print("Tank top = ");
+  Serial.println(heating_tanktop);
 }
 
 void SendTestSMS()
@@ -313,6 +316,8 @@ void sendSMS()
   Serial.println(sendTitle);
   Serial.print("Burner = ");
   Serial.println(heating_burner);
+  Serial.print("Tank top = ");
+  Serial.println(heating_tanktop);
   /* Send SMS messages
   ------------------------------------------- */
   
@@ -325,9 +330,12 @@ void sendSMS()
   mySerial.print(phoneNro);  //***
   mySerial.println(char(34)); // End of setting phone nro with " (char(34)
   delay(1000);
-  mySerial.print("SendTitle = ");
+  mySerial.print("SendTitle = ");// The SMS text you want to send
   mySerial.println(sendTitle);
-  mySerial.println("This is test message...  ");// The SMS text you want to send
+  mySerial.print("Burner = ");
+  mySerial.println(heating_burner);
+  mySerial.print("Burner = ");
+  mySerial.println(heating_tanktop);
   delay(1000);
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
