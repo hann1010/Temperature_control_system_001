@@ -133,7 +133,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   for(int i = 0; i< 10; i++)
   {
     //readSMS(); // Read and prosess in coming SMS messages
-    SendTestSMS(); // Reading test button
+    sendTestSMS(); // Reading test button
     temperatureRead(); // Reading temperature from sensor)
     if (i < 5) 
       {
@@ -288,7 +288,7 @@ void temperatureRead()
   Serial.println(heating_tanktop);
 }
 
-void SendTestSMS()
+void sendTestSMS()
 {
     /* Sending SMS test message.
   -------------------------------------------*/
