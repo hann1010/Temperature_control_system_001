@@ -282,10 +282,13 @@ void temperatureRead()
   -------------------------------------------*/
   heating_burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
   heating_tanktop = temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop);
+  heating_inline = temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline);
   Serial.print("Burner = "); //Debug
   Serial.println(heating_burner);
   Serial.print("Tank top = ");
   Serial.println(heating_tanktop);
+  Serial.print("Inline = ");
+  Serial.println(heating_inline);
 }
 
 void sendTestSMS()
@@ -318,6 +321,8 @@ void sendSMS()
   Serial.println(heating_burner);
   Serial.print("Tank top = ");
   Serial.println(heating_tanktop);
+  Serial.print("Inline = ");
+  Serial.println(heating_inline);
   /* Send SMS messages
   ------------------------------------------- */
   
@@ -336,6 +341,8 @@ void sendSMS()
   mySerial.println(heating_burner);
   mySerial.print("Burner = ");
   mySerial.println(heating_tanktop);
+  mySerial.print("Inline = ");
+  mySerial.println(heating_inline);
   delay(1000);
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
