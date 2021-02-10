@@ -150,7 +150,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         //lcd.print("");
         //lcd.setCursor(12, 2);
         lcd.setCursor(0, 2);
-        lcd.print("Hot water = "); lcd.print(temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater));
+        lcd.print("Hot water = "); lcd.print(heating_hotwater);
         lcd.setCursor(0, 3);
         lcd.print("Out temp = "); lcd.print(temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
         //lcd.print(" = "); lcd.print(max2.temperature(RNOMINAL2, RREF2));   
@@ -283,12 +283,15 @@ void temperatureRead()
   heating_burner = temperature_sensor_heating_burner.temperature(RNOMINAL, RREF_burner);
   heating_tanktop = temperature_sensor_heating_tanktop.temperature(RNOMINAL, RREF_tanktop);
   heating_inline = temperature_sensor_heating_inline.temperature(RNOMINAL, RREF_inline);
+  heating_hotwater = temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater);
   Serial.print("Burner = "); //Debug
   Serial.println(heating_burner);
   Serial.print("Tank top = ");
   Serial.println(heating_tanktop);
   Serial.print("Inline = ");
   Serial.println(heating_inline);
+  Serial.print("Hot water = ");
+  Serial.println(heating_hotwater);
 }
 
 void sendTestSMS()
@@ -323,6 +326,8 @@ void sendSMS()
   Serial.println(heating_tanktop);
   Serial.print("Inline = ");
   Serial.println(heating_inline);
+  Serial.print("Hot water = ");
+  Serial.println(heating_hotwater);
   /* Send SMS messages
   ------------------------------------------- */
   
@@ -343,6 +348,8 @@ void sendSMS()
   mySerial.println(heating_tanktop);
   mySerial.print("Inline = ");
   mySerial.println(heating_inline);
+  mySerial.print("Hot water = ");
+  mySerial.println(heating_hotwater);
   delay(1000);
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
