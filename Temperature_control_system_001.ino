@@ -286,6 +286,7 @@ void temperatureRead()
   heating_hotwater = temperature_sensor_heating_hotwater.temperature(RNOMINAL, RREF_hotwater);
   outdoor = temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor);
   //Debug
+  /*
   Serial.print("Burner = ");
   Serial.println(heating_burner);
   Serial.print("Tank top = ");
@@ -296,6 +297,7 @@ void temperatureRead()
   Serial.println(heating_hotwater);
   Serial.print("Out temp = ");
   Serial.println(outdoor);
+  */
 }
 
 void sendTestSMS()
@@ -309,7 +311,7 @@ void sendTestSMS()
     lcd.clear();
     lcd.setCursor(0, 1);
     lcd.print("Sending test...");
-    phoneNro = "12345";
+    phoneNro = "+12345";
     sendTitle = "test";
     sendSMS();
   }
