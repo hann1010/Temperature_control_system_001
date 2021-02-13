@@ -352,7 +352,7 @@ void sendSMS()
   mySerial.println(sendTitle);
   mySerial.print("Burner = ");
   mySerial.println(heating_burner);
-  mySerial.print("Burner = ");
+  mySerial.print("Tank top = ");
   mySerial.println(heating_tanktop);
   mySerial.print("Inline = ");
   mySerial.println(heating_inline);
