@@ -132,7 +132,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
-    //readSMS(); // Read and prosess in coming SMS messages
+    readSMS(); // Read and prosess in coming SMS messages
     sendTestSMS(); // Reading test button
     temperatureRead(); // Reading temperature from sensor)
     if (i < 5) 
@@ -204,26 +204,27 @@ void setupReceiveSMS()
 void readSMS()
 {
   /* Read and prosess in coming SMS messages
-  -------------------------------------------
+  ------------------------------------------- */
   //mySerial.println("AT+CMGR=ALL\r"); // Read All SMS
-  //if (mySerial.available()>0)
-  while (mySerial.available() > 0) 
+  if (mySerial.available()>0)
   {
+    while (mySerial.available()>0) 
+    {
 //  if (mySerial.available()) //!!
 //  {
 //    ReadTmp = (char)mySerial.read();
-    char readTmp = mySerial.read();
+//    char readTmp = mySerial.read();
     //ReadTmp=(mySerial.read());
-    inputString += readTmp;
-    sendRequest = true;
-
+//  inputString += readTmp;
+//  sendRequest = true;
+    }
     numOfMsgRecieve += 1; //only testing 
   }
 
   //inputString = "";
   //numOfMsgRecieve += 1; //only testing
 //  Serial.println(inputString);
- 
+/* 
 if ( sendRequest == true )
   {
     if ( sendDone == false )
@@ -298,6 +299,8 @@ void temperatureRead()
   Serial.print("Out temp = ");
   Serial.println(outdoor);
   */
+  Serial.print("numOfMsgRecieve = ");
+  Serial.println(numOfMsgRecieve);
 }
 
 void sendTestSMS()
