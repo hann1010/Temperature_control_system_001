@@ -127,12 +127,12 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
 {
   /*----------Print some values to terminal-----------*/
   //Serial.print("outdoor temperature = "); Serial.println(Temperature_sensor_outdoor.temperature(RNOMINAL, RREF_outdoor));
-  //ReadSMS(); // Read and prosess in coming SMS messages
+  
 
   /*----------Print to LCD-----------*/
   for(int i = 0; i< 10; i++)
   {
-    readSMS(); // Read and prosess in coming SMS messages
+    
     sendTestSMS(); // Reading test button
     temperatureRead(); // Reading temperature from sensor)
     if (i < 5) 
@@ -176,12 +176,9 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         delay(1000);
       }
   }
-  
-  
- 
-  
 
 } /* --(end main loop )-- */
+
 
 void setupReceiveSMS()
 {
@@ -201,81 +198,7 @@ void setupReceiveSMS()
   
 }
 
-void readSMS()
-{
-  /* Read and prosess in coming SMS messages
-  ------------------------------------------- */
-  //mySerial.println("AT+CMGR=ALL\r"); // Read All SMS
-  if (mySerial.available()>0)
-  {
-    while (mySerial.available()>0) 
-    {
-//  if (mySerial.available()) //!!
-//  {
-//    ReadTmp = (char)mySerial.read();
-//    char readTmp = mySerial.read();
-    //ReadTmp=(mySerial.read());
-//  inputString += readTmp;
-//  sendRequest = true;
-    }
-    numOfMsgRecieve += 1; //only testing 
-  }
 
-  //inputString = "";
-  //numOfMsgRecieve += 1; //only testing
-//  Serial.println(inputString);
-/* 
-if ( sendRequest == true )
-  {
-    if ( sendDone == false )
-    {
-      phoneNro = "12345";
-      sendTitle = "test";
-      sendSMS();
-      sendRequest = false;  
-    }
-    else 
-    {
-      Serial.println("No send ... ");
-    }
-    if (sendDone == false)
-    {
-      sendDone = true;
-    } 
-    else
-    {
-      sendDone = false;
-    }    
-  }
-  */
-}
-
-/*
-  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
-  routine is run between each time loop() runs, so using delay inside loop can
-  delay response. Multiple bytes of data may be available.
-*/
-
-/*
-void serial1Event() 
-{
-  while (Serial1.available()) 
-  {
-    // get the new byte:
-    char inChar = (char)Serial1.read();
-    // add it to the inputString:
-    inputString += inChar;
-    // if the incoming character is a newline, set a flag so the main loop can
-    // do something about it:
-    if (inChar == '\n') 
-    {
-      //stringComplete = true;
-      PhoneNro = 'serialEvent done';
-    }
-    PhoneNro = 'serialEvent done-a';
-  }
-}
-*/
 
 void temperatureRead()
 {
@@ -298,10 +221,12 @@ void temperatureRead()
   Serial.println(heating_hotwater);
   Serial.print("Out temp = ");
   Serial.println(outdoor);
-  */
+  
   Serial.print("numOfMsgRecieve = ");
   Serial.println(numOfMsgRecieve);
+  */
 }
+
 
 void sendTestSMS()
 {
@@ -320,6 +245,7 @@ void sendTestSMS()
   }
 
 }
+
 
 void sendSMS()
 {
