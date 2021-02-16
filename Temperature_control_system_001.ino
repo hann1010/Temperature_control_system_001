@@ -78,11 +78,10 @@ SoftwareSerial mySerial(51, 50); // 3=TX 2=RX in GSM shield side Arduino uno onl
 
 /*-----( Declare Variables )-----*/
 
-String inputString = "";
+
 String phoneNro = "";
 String sendTitle = "";
 
-int numOfMsgRecieve = 0;
 int numOfMsgSend = 0;
 
 float heating_burner;
@@ -170,7 +169,7 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
         lcd.setCursor(0,2);
         lcd.print("Phone NO = "); lcd.print(phoneNro);
         lcd.setCursor(0,3); 
-        lcd.print("Num of Msg r/s "); lcd.print(numOfMsgRecieve); lcd.print("/"); lcd.print(numOfMsgSend);
+        lcd.print("Num of Msg send = "); lcd.print(numOfMsgSend);
         //lcd.clear(); 
 //        lcd.print("str "); lcd.print(inputString.substring(90,130));
         delay(1000);
