@@ -90,6 +90,12 @@ float heating_inline;
 float heating_hotwater;
 float outdoor;
 
+// Alarm levels
+float heating_burner_al_level = 55;
+float heating_tanktop_al_level = 55;
+float heating_inline_al_level = 20;
+float heating_hotwater_al_level = 50;
+
 boolean sendRequest = false;
 boolean sendDone = true;
 
