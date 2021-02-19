@@ -33,7 +33,11 @@ For Arduino Mega 2560 board */
 /*-----( Declare Constants )-----*/
 const int powerOn = 2;   // Pin for set Sim900 power on
 const int testButton = 3;   // Pin for send test botton
-
+// Alarm levels
+const float heating_burner_al_level = 55.00;
+const float heating_tanktop_al_level = 55.00;
+const float heating_inline_al_level = 20.00;
+const float heating_hotwater_al_level = 50.00;
 
 /*-----( Declare objects )-----*/
 // set the LCD address to 0x20 for a 20 chars 4 line display
@@ -83,6 +87,10 @@ String phoneNro = "";
 String sendTitle = "";
 
 int numOfMsgSend = 0;
+int heating_burner_alarm_hys = 0;
+int heating_tanktop_alarm_hys = 0;
+int heating_inline_alarm_hys = 0;
+int heating_hotwater_alarm_hys = 0;
 
 float heating_burner;
 float heating_tanktop;
@@ -90,11 +98,6 @@ float heating_inline;
 float heating_hotwater;
 float outdoor;
 
-// Alarm levels
-float heating_burner_al_level = 55;
-float heating_tanktop_al_level = 55;
-float heating_inline_al_level = 20;
-float heating_hotwater_al_level = 50;
 
 boolean sendRequest = false;
 boolean sendDone = true;
