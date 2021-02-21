@@ -260,7 +260,16 @@ void sendAlarm()
 {
     /* Reading temperature values and if necessary send alarm SMS message.
   -----------------------------------------------------------------------*/
-
+  if (heating_burner < (heating_burner_al_level + heating_burner_alarm_hys))
+  {
+    heating_burner_alarm_hys = 5;
+    Serial.println("Burner alarm on"); //Debug
+  }
+  else
+  {
+    heating_burner_alarm_hys = 0;
+    Serial.println("Burner alarm off"); //Debug
+  }
 }
 
 void sendSMS()
