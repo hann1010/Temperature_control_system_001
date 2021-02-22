@@ -91,6 +91,7 @@ int heating_burner_alarm_hys = 0;
 int heating_tanktop_alarm_hys = 0;
 int heating_inline_alarm_hys = 0;
 int heating_hotwater_alarm_hys = 0;
+int last_alarm = 0;
 
 float heating_burner;
 float heating_tanktop;
@@ -260,9 +261,11 @@ void sendAlarm()
 {
     /* Reading temperature values and if necessary send alarm SMS message.
   -----------------------------------------------------------------------*/
+  int alarm_level = 0; 
   if (heating_burner < (heating_burner_al_level + heating_burner_alarm_hys))
   {
     heating_burner_alarm_hys = 5;
+    alarm_level += 2;
     Serial.println("Burner alarm on"); //Debug
   }
   else
