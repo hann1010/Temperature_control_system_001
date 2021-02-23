@@ -274,7 +274,7 @@ void sendAlarm()
     Serial.println("Burner alarm off"); //Debug
   }
   
-  if alarm_level != last_alarm // Sending alarm if diffent as last time
+  if (alarm_level != last_alarm) // Sending alarm if diffent as last time
   {
     Serial.println("Sending alarm... ");
     lcd.clear();
