@@ -273,6 +273,18 @@ void sendAlarm()
     heating_burner_alarm_hys = 0;
     Serial.println("Burner alarm off"); //Debug
   }
+  
+  if alarm_level != last_alarm // Sending alarm if diffent as last time
+  {
+    Serial.println("Sending alarm... ");
+    lcd.clear();
+    lcd.setCursor(0, 1);
+    lcd.print("Sending alarm...");
+    phoneNro = "+12345";
+    sendTitle = "Alarm";
+    sendSMS();
+    last_alarm = alarm_level;
+  }
 }
 
 void sendSMS()
