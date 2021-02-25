@@ -144,8 +144,8 @@ void loop() /*----( LOOP: RUNS CONSTANTLY )----*/
     
     sendTestSMS(); // Reading test button and if pressed send test SMS
     temperatureRead(); // Reading temperature from sensor)
-    sendAlarm() // Reading temperature values and if necessary send SMS
-{
+    sendAlarm(); // Reading temperature values and if necessary send SMS
+  
     if (i < 5) 
       {
         //lcd.clear();
