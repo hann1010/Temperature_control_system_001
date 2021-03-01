@@ -274,7 +274,7 @@ void sendAlarm()
     Serial.println("Burner alarm off"); //Debug
   }
 
-    int alarm_level = 0; 
+  
   if (heating_tanktop < (heating_tanktop_al_level + heating_tanktop_alarm_hys))
   {
     heating_tanktop_alarm_hys = 5;
