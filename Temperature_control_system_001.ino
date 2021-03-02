@@ -279,12 +279,12 @@ void sendAlarm()
   {
     heating_tanktop_alarm_hys = 5;
     alarm_level += 20;
-    Serial.println("Burner alarm on"); //Debug
+    Serial.println("Tanktop alarm on"); //Debug
   }
   else
   {
     heating_tanktop_alarm_hys = 0;
-    Serial.println("Burner alarm off"); //Debug
+    Serial.println("Tanktop alarm off"); //Debug
   }
   
   if (alarm_level != last_alarm) // Sending alarm if diffent as last time
