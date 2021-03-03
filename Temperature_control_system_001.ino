@@ -274,7 +274,6 @@ void sendAlarm()
     Serial.println("Burner alarm off"); //Debug
   }
 
-  
   if (heating_tanktop < (heating_tanktop_al_level + heating_tanktop_alarm_hys))
   {
     heating_tanktop_alarm_hys = 5;
@@ -285,6 +284,18 @@ void sendAlarm()
   {
     heating_tanktop_alarm_hys = 0;
     Serial.println("Tanktop alarm off"); //Debug
+  }
+
+  if (heating_hotwater < (heating_hotwater_al_level + heating_hotwater_alarm_hys))
+  {
+    heating_hotwater_alarm_hys = 5;
+    alarm_level += 50;
+    Serial.println("Hotwater alarm on"); // Debug
+  }
+  else
+  {
+    heating_hotwater_alarm_hys = 0;
+    Serial.println("Hotwater alarm off"); //Debug
   }
   
   if (alarm_level != last_alarm) // Sending alarm if diffent as last time
