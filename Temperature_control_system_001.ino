@@ -251,7 +251,7 @@ void sendTestSMS()
     lcd.setCursor(0, 1);
     lcd.print("Sending test...");
     phoneNro = "+12345";
-    sendTitle = "test";
+    sendTitle = "Test message";
     sendSMS();
   }
 
