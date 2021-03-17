@@ -195,6 +195,11 @@ void setupReceiveSMS()
 {
   /* Setting up Sim900 for Arduino mega 2560 board
   ------------------------------------------------*/
+  
+  digitalWrite(powerOn, HIGH);  // Auto power on, set power sw pin to High
+  delay(1000);                  
+  digitalWrite(powerOn, LOW);   // Auto power on, set power sw pin to Low
+  delay(1000);
   mySerial.begin(9600);   // Setting the baud rate of GSM Module  
   //Serial1.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino uno only)
   delay(5000);          // Waiting for Sim900 booting up
