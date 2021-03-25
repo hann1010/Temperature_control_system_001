@@ -100,8 +100,8 @@ float heating_hotwater;
 float outdoor;
 
 
-boolean sendRequest = false;
-boolean sendDone = true;
+//boolean sendRequest = false;
+//boolean sendDone = true;
 
 void setup()  /*----( SETUP: RUNS ONCE )----*/
 {
