@@ -307,11 +307,12 @@ void sendAlarm()
   {
     Serial.println("Sending alarm... ");
     lcd.clear();
-    lcd.setCursor(0, 1);
+    lcd.setCursor(0, 0);
     lcd.print("Sending alarm...");
     phoneNro = "+12345";
     sendTitle = "Alarm";
     sendSMS();
+    delay(4000);
     last_alarm = alarm_level;
   }
 }
@@ -361,13 +362,13 @@ void sendSMS()
   delay(1000);
   mySerial.println((char)26);// ASCII code of CTRL+Z
   delay(1000);
-  Serial.println("The message has been sent");
+  Serial.println("Message has been sent");
 //  lcd.clear();
   lcd.setCursor(0, 2);
-  lcd.print("The message has been sent");
+  lcd.print("Msg has been sent");
   lcd.setCursor(0, 3);
-  lcd.print("P No = "); lcd.print(phoneNro);
-  delay(2000);
+  lcd.print("No = ");lcd.print(phoneNro);
+  delay(4000);
   numOfMsgSend += 1;
  
 }
