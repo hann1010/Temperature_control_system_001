@@ -312,7 +312,7 @@ void sendAlarm()
     phoneNro = "+12345";
     sendTitle = "Alarm";
     sendSMS();
-    delay(4000);
+    delay(2000);
     last_alarm = alarm_level;
   }
 }
